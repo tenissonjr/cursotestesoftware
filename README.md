@@ -1,1 +1,4 @@
-Testes de novos recursos do JAVA 8
+#Testes de novos recursos  do **JAVA 8** :
+
+* Lambda
+* Streams
