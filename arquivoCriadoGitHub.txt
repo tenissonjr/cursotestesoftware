@@ -1,1 +1,1 @@
-Novo arquivo criado no GitHub.
+Novo arquivo criado no GitHub e alterado localmente.
