@@ -2,5 +2,3 @@
 
 * Lambda
 * Streams
-
--- Testes
