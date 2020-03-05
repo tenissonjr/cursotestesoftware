@@ -4,19 +4,23 @@ import java.math.BigDecimal;
 
 import br.usp.calculosalario.exception.SalarioBrutoInvalidoException;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter 
 @Setter
-@NoArgsConstructor 
 @ToString
 public class Salario
 {
    private BigDecimal salarioBruto = BigDecimal.ZERO;
    
+   private BigDecimal baseCalculoInss = BigDecimal.ZERO;
+   
+   private BigDecimal aliquotaInss =BigDecimal.ZERO;
+   
    private BigDecimal inss =BigDecimal.ZERO;
+   
+   private BigDecimal baseCalculoIrrf = BigDecimal.ZERO;
    
    private BigDecimal impostoRenda =BigDecimal.ZERO;
    
