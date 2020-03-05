@@ -23,12 +23,14 @@ public class Salario
    private int dependentesImpostoRenda= 0;
    
    public Salario(BigDecimal salarioBruto) throws SalarioBrutoInvalidoException {
-	   if(salarioBruto==null) {
+	   if(salarioBruto==null || salarioBruto.signum()<0) {
 		   throw new SalarioBrutoInvalidoException();
 	   }
 	   this.salarioBruto=salarioBruto;
+	 
    }
-   public Salario(BigDecimal salarioBruto,int dependentesImpostoRenda) throws SalarioBrutoInvalidoException {
+
+public Salario(BigDecimal salarioBruto,int dependentesImpostoRenda) throws SalarioBrutoInvalidoException {
 	   this(salarioBruto);
 	   this.dependentesImpostoRenda=dependentesImpostoRenda;
    }

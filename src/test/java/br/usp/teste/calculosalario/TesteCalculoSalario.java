@@ -1,6 +1,7 @@
 package br.usp.teste.calculosalario;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.math.BigDecimal;
 
@@ -33,16 +34,37 @@ public class TesteCalculoSalario {
 	    	
 	    }	
 	
+	   @Test
+	    void testaSalarioBrutoNegativo()  throws SalarioExcetion {
+	    	
+		   Assertions.assertThrows(SalarioBrutoInvalidoException.class, () -> {
+			   salarioBuilder.getSalario(BigDecimal.valueOf(-1.0));
+			  });
+	    	
+	    }	   
+	   
 	  @Test
 	    void testaSalarioZerado() throws SalarioExcetion {
 	    	
-	    	BigDecimal salarioBruto = BigDecimal.ZERO;
 	    	
-	    	Salario salario =salarioBuilder.getSalario(salarioBruto);
+	    	Salario salario =salarioBuilder.getSalario(BigDecimal.ZERO);
 	    	
-	        assertEquals(BigDecimal.ZERO, salario.getSalarioBruto());
-	        assertEquals(BigDecimal.ZERO, salario.getInss());
-	        assertEquals(BigDecimal.ZERO, salario.getImpostoRenda());
-	        assertEquals(BigDecimal.ZERO, salario.getSalarioLiquido());
+	    	validarSalario(salario);
+	    	
+	    	
+	        assertEquals(true, salario.getSalarioBruto().signum()==0);
+	        assertEquals(true, salario.getInss().signum()==0);
+	        assertEquals(true, salario.getImpostoRenda().signum()==0);
+	        assertEquals(true, salario.getSalarioLiquido().signum()==0);
+	        
 	    }
+
+
+	private void validarSalario(Salario salario) {
+		assertNotNull(salario);
+		assertNotNull(salario.getSalarioBruto());
+		assertNotNull(salario.getInss());
+		assertNotNull(salario.getImpostoRenda());
+		assertNotNull(salario.getSalarioLiquido());
+	}
 }
