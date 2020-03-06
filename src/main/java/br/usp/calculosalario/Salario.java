@@ -14,17 +14,12 @@ public class Salario
 {
    private BigDecimal salarioBruto = BigDecimal.ZERO;
    
-   private BigDecimal baseCalculoInss = BigDecimal.ZERO;
-   
-   private BigDecimal aliquotaInss =BigDecimal.ZERO;
-   
-   private BigDecimal inss =BigDecimal.ZERO;
-   
-   private BigDecimal baseCalculoIrrf = BigDecimal.ZERO;
-   
-   private BigDecimal impostoRenda =BigDecimal.ZERO;
-   
    private int dependentesImpostoRenda= 0;
+   
+   private DescontoSalarial inns = new  DescontoSalarial();
+   
+   private DescontoSalarial irrf = new  DescontoSalarial();
+   
    
    public Salario(BigDecimal salarioBruto) throws SalarioBrutoInvalidoException {
 	   if(salarioBruto==null || salarioBruto.signum()<0) {
@@ -40,7 +35,7 @@ public Salario(BigDecimal salarioBruto,int dependentesImpostoRenda) throws Salar
    }
    
    public BigDecimal getSalarioLiquido() {
-	  return  salarioBruto.subtract(inss).subtract(impostoRenda);
+	  return  salarioBruto.subtract(inns.getValor()).subtract(irrf.getValor());
    }
 	
 }

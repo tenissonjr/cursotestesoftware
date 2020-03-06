@@ -23,11 +23,8 @@ public class TesteCalculoSalario {
 	private void validarSalario(Salario salario) {
 		assertNotNull(salario);
 		assertNotNull(salario.getSalarioBruto());
-		assertNotNull(salario.getBaseCalculoInss());
-		assertNotNull(salario.getAliquotaInss());
-		assertNotNull(salario.getInss());
-		assertNotNull(salario.getBaseCalculoIrrf());
-		assertNotNull(salario.getImpostoRenda());
+		assertNotNull(salario.getInns());
+		assertNotNull(salario.getIrrf());
 		assertNotNull(salario.getSalarioLiquido());
 	}
 
@@ -62,20 +59,21 @@ public class TesteCalculoSalario {
 		validarSalario(salario);
 
 		assertEquals(true, salario.getSalarioBruto().signum() == 0);
-		assertEquals(true, salario.getInss().signum() == 0);
-		assertEquals(true, salario.getImpostoRenda().signum() == 0);
+		assertEquals(true, salario.getInns().getValor().signum() == 0);
+		assertEquals(true, salario.getIrrf().getValor().signum() == 0);
 		assertEquals(true, salario.getSalarioLiquido().signum() == 0);
 
 	}
 
 	/*
+	 * ------------------------------------------------------------
 	 * Testes de valor de INSS
-	 * 
-	 * 
+	 * ------------------------------------------------------------
 	 */
 
 	/*
-	 * R$ - R$ 1.247,70 8,00% R$ 1.247,71 R$ 2.079,50 9,00% R$ 2.079,51 R$ 4.159,00
+	 * R$ - R$ 1.247,70 8,00% 
+	 * R$ 1.247,71 R$ 2.079,50 9,00% R$ 2.079,51 R$ 4.159,00
 	 * 11,00%
 	 */
 
@@ -93,9 +91,9 @@ public class TesteCalculoSalario {
 
 			validarSalario(salario);
 
-			assertNotEquals(salario.getAliquotaInss(), faixaInss.getAliquota());
+			assertNotEquals(salario.getInns().getAliquota(), faixaInss.getAliquota());
 
-			assertNotEquals(salario.getInss(), salario.getSalarioBruto().multiply(faixaInss.getAliquota()));
+			assertNotEquals(salario.getInns(), salario.getSalarioBruto().multiply(faixaInss.getAliquota()));
 
 		}
 
@@ -110,9 +108,9 @@ public class TesteCalculoSalario {
 
 			validarSalario(salario);
 
-			assertEquals(0, salario.getAliquotaInss().compareTo(faixaInss.getAliquota()));
+			assertEquals(0, salario.getInns().getAliquota().compareTo(faixaInss.getAliquota()));
 
-			assertEquals(salario.getInss(), salario.getSalarioBruto().multiply(faixaInss.getAliquota()));
+			assertEquals(salario.getInns().getValor(), salario.getSalarioBruto().multiply(faixaInss.getAliquota()));
 
 		}
 
@@ -127,9 +125,9 @@ public class TesteCalculoSalario {
 
 			validarSalario(salario);
 
-			assertEquals(0, salario.getAliquotaInss().compareTo(faixaInss.getAliquota()));
+			assertEquals(0, salario.getInns().getAliquota().compareTo(faixaInss.getAliquota()));
 
-			assertEquals(salario.getInss(), salario.getSalarioBruto().multiply(faixaInss.getAliquota()));
+			assertEquals(salario.getInns().getValor(), salario.getSalarioBruto().multiply(faixaInss.getAliquota()));
 
 		}
 
@@ -144,9 +142,9 @@ public class TesteCalculoSalario {
 
 			validarSalario(salario);
 
-			assertNotEquals(salario.getAliquotaInss(), faixaInss.getAliquota());
+			assertNotEquals(salario.getInns().getAliquota(), faixaInss.getAliquota());
 
-			assertNotEquals(salario.getInss(), salario.getSalarioBruto().multiply(faixaInss.getAliquota()));
+			assertNotEquals(salario.getInns(), salario.getSalarioBruto().multiply(faixaInss.getAliquota()));
 
 		}
 
