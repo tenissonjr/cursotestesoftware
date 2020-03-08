@@ -1,9 +1,8 @@
 package br.usp.calculosalario;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
-import br.usp.calculosalario.exception.SalarioBrutoInvalidoException;
+import br.usp.calculosalario.exception.SalarioException;
 
 public final class CalculadoraSalario {
 
@@ -15,18 +14,29 @@ public final class CalculadoraSalario {
 	public DescontoSalarial calcularDescontoInss(BigDecimal baseCalculoInss) {
 		
 		DescontoSalarial descontoSalarial = new DescontoSalarial();
+		
+		if (baseCalculoInss.compareTo(FaixaInss.BASE_CALCULO_TETO)>0) {
+			baseCalculoInss = FaixaInss.BASE_CALCULO_TETO ;
+		}		
+		
 		descontoSalarial.setBaseCalculo(baseCalculoInss);
 		
 		for (FaixaInss faixaInss : FaixaInss.TABELA_INSS) {
 			if( faixaInss.contemValor(baseCalculoInss)) {
+
 				descontoSalarial.setAliquota(faixaInss.getAliquota());
-				descontoSalarial.setValor(baseCalculoInss.multiply(faixaInss.getAliquota()));
+
+				BigDecimal valorInss = baseCalculoInss.multiply(faixaInss.getAliquota());
+				
+				descontoSalarial.setValor(valorInss);
 			}
 		}
 		return descontoSalarial;
 		
 	}
-	
+	public DescontoSalarial calcularDescontoIrrf(BigDecimal baseCalculoIrrf) {
+		return calcularDescontoIrrf(baseCalculoIrrf,0);
+	}
 
 	public DescontoSalarial calcularDescontoIrrf(BigDecimal baseCalculoIrrf,int dependentesImpostoRenda) {
 		
@@ -62,9 +72,9 @@ public final class CalculadoraSalario {
 	}
 	
 	
-	public Salario calcular(BigDecimal salarioBruto) throws SalarioBrutoInvalidoException{
+	public Salario calcular(BigDecimal salarioBruto,int dependentesImpostoRenda) throws SalarioException{
 		
-		Salario salario = new Salario(salarioBruto);
+		Salario salario = new Salario(salarioBruto,dependentesImpostoRenda);
 		
 		salario.setInns(calcularDescontoInss(salarioBruto));
 

@@ -2,7 +2,9 @@ package br.usp.calculosalario;
 
 import java.math.BigDecimal;
 
+import br.usp.calculosalario.exception.DependenteInvalidoException;
 import br.usp.calculosalario.exception.SalarioBrutoInvalidoException;
+import br.usp.calculosalario.exception.SalarioException;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -21,21 +23,25 @@ public class Salario
    private DescontoSalarial irrf = new  DescontoSalarial();
    
    
-   public Salario(BigDecimal salarioBruto) throws SalarioBrutoInvalidoException {
+   public Salario(BigDecimal salarioBruto) throws SalarioException {
+	  this(salarioBruto,0);
+
+   }
+
+public Salario(BigDecimal salarioBruto,int dependentesImpostoRenda) throws SalarioException {
 	   if(salarioBruto==null || salarioBruto.signum()<0) {
 		   throw new SalarioBrutoInvalidoException();
 	   }
 	   this.salarioBruto=salarioBruto;
-	 
-   }
-
-public Salario(BigDecimal salarioBruto,int dependentesImpostoRenda) throws SalarioBrutoInvalidoException {
-	   this(salarioBruto);
+	   
+	   if(dependentesImpostoRenda<0) {
+		   throw new DependenteInvalidoException();
+	   }   
 	   this.dependentesImpostoRenda=dependentesImpostoRenda;
    }
    
    public BigDecimal getSalarioLiquido() {
-	  return  salarioBruto.subtract(inns.getValor()).subtract(irrf.getValor());
+	  return  (salarioBruto.subtract(inns.getValor()).subtract(irrf.getValor())).setScale(2);
    }
 	
 }

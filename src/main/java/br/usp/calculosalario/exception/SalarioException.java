@@ -1,14 +1,14 @@
 package br.usp.calculosalario.exception;
 
-public class SalarioExcetion extends Exception {
+public class SalarioException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
-	public SalarioExcetion() {
+	public SalarioException() {
 		super();
 	}
 	
-	public SalarioExcetion(String message) {
+	public SalarioException(String message) {
 		super(message);
 	}
 		

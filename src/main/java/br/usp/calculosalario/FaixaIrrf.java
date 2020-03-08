@@ -10,20 +10,32 @@ import lombok.Getter;
 
 public class FaixaIrrf {
 
-	
-	public static BigDecimal DEDUCAO_POR_DEPENDENTE=BigDecimal.valueOf(171.97);
-	
 	   /*
-			 R$  -   	 		R$  1.710,78 	0,0%	 R$  -   
-			 R$  1.710,79 	 	R$  2.563,91 	7,5%	 R$  112,43 
-			 R$  2.563,92 	 	R$  3.418,59 	15,0%	 R$  280,94 
-			 R$  3.418,60 	 	R$  4.271,59 	22,5%	 R$  505,62 
-			 R$  4.271,60 						27,5%	 R$  692,78 
+	    
+		Tabela IRRF
+		
+
+		+----------------+-----------------+----------+--------------+
+		| Limte Inferior | Limite Superior | ALÍQUOTA |   Dedução    |
+		+----------------+-----------------+----------+--------------+
+		|  R$  1.903,99  |  R$  2.826,65   | 7,5%     |  R$  142,80  |
+		|  R$  2.826,66  |  R$  3.751,05   | 15,0%    |  R$  354,80  |
+		|  R$  3.751,06  |  R$  4.664,68   | 22,5%    |  R$  636,13  |
+		|  R$  4.664,69  | -               | 27,5%    |  R$  869,36  |
+		+----------------+-----------------+----------+--------------+
+		
+
+		Dedução por dependente :189,59
+
 	   */	
+	
+	public static BigDecimal DEDUCAO_POR_DEPENDENTE=BigDecimal.valueOf(189.58);
+	
 	public static final List<FaixaIrrf> TABELA_IRRF = Arrays.asList( 
-														 new FaixaIrrf(BigDecimal.valueOf(1710.79) 	,BigDecimal.valueOf(2563.91) 		 	,BigDecimal.valueOf(7.5/100) 	,BigDecimal.valueOf(112.43))
-														,new FaixaIrrf(BigDecimal.valueOf(2563.92) 	,BigDecimal.valueOf(3418.59) 		 	,BigDecimal.valueOf(15.0/100) 	,BigDecimal.valueOf(280.94))
-														,new FaixaIrrf(BigDecimal.valueOf(3418.60) 	,BigDecimal.valueOf(Double.MAX_VALUE) 	,BigDecimal.valueOf(27.5/100) 	,BigDecimal.valueOf(692.78))
+														 new FaixaIrrf(BigDecimal.valueOf(1903,99) 	,BigDecimal.valueOf(2826.65) 		 	,BigDecimal.valueOf(7.5/100) 	,BigDecimal.valueOf(142.80))
+														,new FaixaIrrf(BigDecimal.valueOf(2826.66) 	,BigDecimal.valueOf(3751.05) 		 	,BigDecimal.valueOf(15.0/100) 	,BigDecimal.valueOf(354.80))
+														,new FaixaIrrf(BigDecimal.valueOf(3751.06) 	,BigDecimal.valueOf(4664.68) 		 	,BigDecimal.valueOf(22.5/100) 	,BigDecimal.valueOf(636.13))
+														,new FaixaIrrf(BigDecimal.valueOf(4664.69) 	,BigDecimal.valueOf(Double.MAX_VALUE) 	,BigDecimal.valueOf(27.5/100) 	,BigDecimal.valueOf(869.36))
 														);
 		
 
