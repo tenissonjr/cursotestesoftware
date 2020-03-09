@@ -45,6 +45,8 @@ public class TesteValoresLimiteCalculoIrrf extends AbstractTest {
 			BigDecimal impostoRenda = baseCalculoIrrf.multiply(faixaIrrf.getAliquota());
 			impostoRenda =impostoRenda.subtract(faixaIrrf.getDeducaoFaixa());
 			
+			System.out.println(descontoIrrf);
+			
 			assertEquals((descontoIrrf.getValor().subtract(impostoRenda)).signum(),0);
 
 		}

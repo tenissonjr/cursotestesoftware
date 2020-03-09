@@ -2,6 +2,7 @@ package br.usp.calculosalario;
 
 import java.math.BigDecimal;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,6 +10,7 @@ import lombok.ToString;
 @Getter 
 @Setter
 @ToString
+@EqualsAndHashCode
 public class DescontoSalarial {
 	
 	   private BigDecimal baseCalculo = BigDecimal.ZERO;

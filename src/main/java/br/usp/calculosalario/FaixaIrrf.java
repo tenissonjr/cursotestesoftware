@@ -3,6 +3,7 @@ package br.usp.calculosalario;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
+import static br.usp.calculosalario.SalarioUtil.arred;
 
 import lombok.Getter;
 
@@ -51,10 +52,10 @@ public class FaixaIrrf {
 
 	public FaixaIrrf(BigDecimal limiteInferior, BigDecimal limiteSuperior, BigDecimal aliquota,BigDecimal deducaoFaixa) {
 		super();
-		this.limiteInferior = limiteInferior;
-		this.limiteSuperior = limiteSuperior;
-		this.aliquota = aliquota;
-		this.deducaoFaixa=deducaoFaixa;
+		this.limiteInferior = arred(limiteInferior);
+		this.limiteSuperior = arred(limiteSuperior);
+		this.aliquota = arred(aliquota);
+		this.deducaoFaixa=arred(deducaoFaixa);
 	}
 		
 	

@@ -3,6 +3,7 @@ package br.usp.calculosalario;
 import java.math.BigDecimal;
 
 import br.usp.calculosalario.exception.SalarioException;
+import static br.usp.calculosalario.SalarioUtil.arred;
 
 public final class CalculadoraSalario {
 
@@ -83,6 +84,15 @@ public final class CalculadoraSalario {
 				;
 		
 		salario.setIrrf(calcularDescontoIrrf(baseCalculoIrrf, salario.getDependentesImpostoRenda()));
+		
+		
+		BigDecimal salarioLiquido=  arred(salario.getSalarioBruto()
+										.subtract(salario.getInns().getValor())
+										.subtract(salario.getIrrf().getValor())
+										);
+		
+		salario.setSalarioLiquido(salarioLiquido);
+			  
 		
 		
 		return salario;

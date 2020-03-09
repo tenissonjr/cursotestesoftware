@@ -29,9 +29,6 @@ public class AbstractTest {
 	public AbstractTest() {
 		super();
 	}
-	protected BigDecimal toBigDecimal(double d) {
-		return BigDecimal.valueOf(d).setScale(2);
-	}	
-	
+
 
 }

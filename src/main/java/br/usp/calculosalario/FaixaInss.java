@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import lombok.Getter;
+import static br.usp.calculosalario.SalarioUtil.arred;
 
 @Getter 
 
@@ -45,9 +46,9 @@ public class FaixaInss {
 
 	public FaixaInss(BigDecimal limiteInferior, BigDecimal limiteSuperior, BigDecimal aliquota) {
 		super();
-		this.limiteInferior = limiteInferior;
-		this.limiteSuperior = limiteSuperior;
-		this.aliquota = aliquota;
+		this.limiteInferior = arred(limiteInferior);
+		this.limiteSuperior = arred(limiteSuperior);
+		this.aliquota = arred(aliquota);
 	}
 		
 	
