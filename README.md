@@ -1,4 +1,7 @@
-# Testes de novos recursos  do **JAVA 8** :
+# Trabalho do Curso de  Introdução ao Teste de Software ( Instituto de Ciências Matemáticas e Computação  ICMC / USP ) :
 
-* Lambda
-* Streams
+Testes abordados :
+
+* Testes Funcionais
+* Testes Estruturais
+* Teste Baseado em Defeitos
