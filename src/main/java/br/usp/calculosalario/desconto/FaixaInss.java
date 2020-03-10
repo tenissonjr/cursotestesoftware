@@ -1,11 +1,12 @@
-package br.usp.calculosalario;
+package br.usp.calculosalario.desconto;
+
+import static br.usp.calculosalario.util.CalculadoraSalarioUtil.arred;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
 import lombok.Getter;
-import static br.usp.calculosalario.SalarioUtil.arred;
 
 @Getter 
 

@@ -1,11 +1,11 @@
-package br.usp.teste.calculosalario;
+package br.usp.calculosalario.teste;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.BeforeAll;
 
 import br.usp.calculosalario.CalculadoraSalario;
-import br.usp.calculosalario.Salario;
+import br.usp.calculosalario.dominio.Salario;
 
 public class AbstractTest {
 

@@ -1,5 +1,7 @@
-package br.usp.teste.calculosalario;
+package br.usp.calculosalario.teste;
 
+import static br.usp.calculosalario.util.CalculadoraSalarioUtil.arred;
+import static br.usp.calculosalario.util.CalculadoraSalarioUtil.toBigDecimal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -7,12 +9,9 @@ import java.math.BigDecimal;
 
 import org.junit.jupiter.api.Test;
 
-import br.usp.calculosalario.DescontoSalarial;
-import br.usp.calculosalario.FaixaInss;
+import br.usp.calculosalario.desconto.DescontoSalarial;
+import br.usp.calculosalario.desconto.FaixaInss;
 import br.usp.calculosalario.exception.SalarioException;
-
-import static br.usp.calculosalario.SalarioUtil.arred;
-import static br.usp.calculosalario.SalarioUtil.toBigDecimal;
 
 public class TesteValoresLimiteCalculoInss extends AbstractTest {
 

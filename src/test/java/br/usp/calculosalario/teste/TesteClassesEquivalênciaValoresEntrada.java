@@ -1,14 +1,14 @@
-package br.usp.teste.calculosalario;
+package br.usp.calculosalario.teste;
 
+import static br.usp.calculosalario.util.CalculadoraSalarioUtil.toBigDecimal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static br.usp.calculosalario.SalarioUtil.toBigDecimal;
 
 import java.math.BigDecimal;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import br.usp.calculosalario.Salario;
+import br.usp.calculosalario.dominio.Salario;
 import br.usp.calculosalario.exception.DependenteInvalidoException;
 import br.usp.calculosalario.exception.SalarioBrutoInvalidoException;
 import br.usp.calculosalario.exception.SalarioException;

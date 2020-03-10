@@ -1,10 +1,12 @@
-package br.usp.calculosalario;
+package br.usp.calculosalario.dominio;
 
 import java.math.BigDecimal;
 
+import br.usp.calculosalario.desconto.DescontoSalarial;
 import br.usp.calculosalario.exception.DependenteInvalidoException;
 import br.usp.calculosalario.exception.SalarioBrutoInvalidoException;
 import br.usp.calculosalario.exception.SalarioException;
+import br.usp.calculosalario.util.CalculadoraSalarioUtil;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +18,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class Salario
 {
-   private BigDecimal salarioBruto = SalarioUtil.ZERO;
+   private BigDecimal salarioBruto = CalculadoraSalarioUtil.ZERO;
    
    private int dependentesImpostoRenda= 0;
    
@@ -24,7 +26,7 @@ public class Salario
    
    private DescontoSalarial irrf = new  DescontoSalarial();
    
-   private BigDecimal salarioLiquido = SalarioUtil.ZERO;
+   private BigDecimal salarioLiquido = CalculadoraSalarioUtil.ZERO;
    
    public Salario(BigDecimal salarioBruto) throws SalarioException {
 	  this(salarioBruto,0);

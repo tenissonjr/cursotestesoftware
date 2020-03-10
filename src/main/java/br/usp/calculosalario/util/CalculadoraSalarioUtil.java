@@ -1,8 +1,8 @@
-package br.usp.calculosalario;
+package br.usp.calculosalario.util;
 
 import java.math.BigDecimal;
 
-public class SalarioUtil {
+public class CalculadoraSalarioUtil {
 
 	private static final int NUMERO_CASAS_DECIMAS = 2;
 	
