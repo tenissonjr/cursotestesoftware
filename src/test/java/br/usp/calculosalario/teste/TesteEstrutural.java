@@ -1,14 +1,14 @@
 package br.usp.calculosalario.teste;
 
 import static br.usp.calculosalario.util.CalculadoraSalarioUtil.toBigDecimal;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
 import br.usp.calculosalario.dominio.Salario;
 import br.usp.calculosalario.exception.SalarioException;
 
-public class TesteEstrutural extends AbstractTest {
+class TesteEstrutural extends AbstractTest {
 
 		
 	private void assertSalarioLiquidoCalculado(Salario salarioEsperado) throws SalarioException {

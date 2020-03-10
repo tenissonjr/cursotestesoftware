@@ -1,11 +1,8 @@
 package br.usp.calculosalario.teste;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import org.junit.jupiter.api.BeforeAll;
 
 import br.usp.calculosalario.CalculadoraSalario;
-import br.usp.calculosalario.dominio.Salario;
 
 public class AbstractTest {
 
@@ -14,14 +11,6 @@ public class AbstractTest {
 	@BeforeAll
 	static void initAll() {
 		calculadoraSalario = new CalculadoraSalario();
-	}
-
-	protected void validarSalario(Salario salario) {
-		assertNotNull(salario);
-		assertNotNull(salario.getSalarioBruto());
-		assertNotNull(salario.getInns());
-		assertNotNull(salario.getIrrf());
-		assertNotNull(salario.getSalarioLiquido());
 	}
 
 	public AbstractTest() {

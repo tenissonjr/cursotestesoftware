@@ -9,7 +9,6 @@ import java.util.List;
 import lombok.Getter;
 
 @Getter 
-
 public class FaixaInss {
 
 	
@@ -55,9 +54,6 @@ public class FaixaInss {
 	
 	public boolean contemValor(BigDecimal salarioBruto) {
 		
-		if (limiteInferior==null || limiteSuperior==null || salarioBruto==null) {
-			return false;
-		}
 		if(salarioBruto.compareTo(limiteInferior)<0) {
 			return false;
 		}

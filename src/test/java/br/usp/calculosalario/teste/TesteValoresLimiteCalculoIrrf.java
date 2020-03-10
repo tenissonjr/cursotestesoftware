@@ -2,8 +2,7 @@ package br.usp.calculosalario.teste;
 
 import static br.usp.calculosalario.util.CalculadoraSalarioUtil.arred;
 import static br.usp.calculosalario.util.CalculadoraSalarioUtil.toBigDecimal;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 
@@ -13,17 +12,14 @@ import br.usp.calculosalario.desconto.DescontoSalarial;
 import br.usp.calculosalario.desconto.FaixaIrrf;
 import br.usp.calculosalario.exception.SalarioException;
 
-
-public class TesteValoresLimiteCalculoIrrf extends AbstractTest {
+class TesteValoresLimiteCalculoIrrf extends AbstractTest {
 
 	@Test
 	void testaAliquotasIrrfQuandoBaseCalculoIgualFaixaInicialMenosUm()  {
 
 		for (FaixaIrrf faixaIrrf : FaixaIrrf.TABELA_IRRF) {
 
-			if (faixaIrrf.getLimiteInferior().signum() == 0) {
-				continue;
-			}
+
 			BigDecimal baseCalculoIrrf = faixaIrrf.getLimiteInferior().subtract(BigDecimal.valueOf(0.01));
 			
 			DescontoSalarial descontoIrrf = calculadoraSalario.calcularDescontoIrrf(baseCalculoIrrf) ;
@@ -52,10 +48,6 @@ public class TesteValoresLimiteCalculoIrrf extends AbstractTest {
 				)
 			 ;
 			
-			if(impostoRenda.signum()<0) {
-				impostoRenda =arred( BigDecimal.ZERO);
-			}
-			
 			
 			assertEquals(impostoRenda,descontoIrrf.getValor());
 
@@ -80,9 +72,7 @@ public class TesteValoresLimiteCalculoIrrf extends AbstractTest {
 											)
 										 ;
 
-			if(impostoRenda.signum()<0) {
-				impostoRenda =arred( BigDecimal.ZERO);
-			}
+
 			
 			
 			

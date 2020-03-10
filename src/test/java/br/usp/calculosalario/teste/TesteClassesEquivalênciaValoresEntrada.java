@@ -1,7 +1,7 @@
 package br.usp.calculosalario.teste;
 
 import static br.usp.calculosalario.util.CalculadoraSalarioUtil.toBigDecimal;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 
@@ -13,24 +13,17 @@ import br.usp.calculosalario.exception.DependenteInvalidoException;
 import br.usp.calculosalario.exception.SalarioBrutoInvalidoException;
 import br.usp.calculosalario.exception.SalarioException;
 
-public class TesteClassesEquivalênciaValoresEntrada extends AbstractTest {
+class TesteClassesEquivalênciaValoresEntrada extends AbstractTest {
 
 /*
  * 
-
 +------------------------+---------------------------------+-----------------------------------+
 |  Variáveis de Entrada  | Classes de Equivalência válidas | Classes de Equivalência inválidas |
 +------------------------+---------------------------------+-----------------------------------+
 | Salário bruto          |                         1,2,3.. | Null, 0 , <0                      |
 | Qtd. dependentes de IR |                       0,1,2,3.. | Null, <0                          |
 +------------------------+---------------------------------+-----------------------------------+
-
-
-	
-	
  */
-	
-	
 	
 	@Test
 	void testaSalarioBrutoValidoQuantidaddeDependentesInvalido() throws SalarioException {

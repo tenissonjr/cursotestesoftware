@@ -62,9 +62,6 @@ public class FaixaIrrf {
 	
 	public boolean contemValor(BigDecimal baseCalculoIrrf) {
 		
-		if (limiteInferior==null || limiteSuperior==null || baseCalculoIrrf==null) {
-			return false;
-		}
 		if(baseCalculoIrrf.compareTo(limiteInferior)<0) {
 			return false;
 		}
