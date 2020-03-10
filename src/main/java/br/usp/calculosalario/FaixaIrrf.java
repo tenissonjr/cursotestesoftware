@@ -30,13 +30,13 @@ public class FaixaIrrf {
 
 	   */	
 	
-	public static BigDecimal DEDUCAO_POR_DEPENDENTE=BigDecimal.valueOf(189.58);
+	public static BigDecimal DEDUCAO_POR_DEPENDENTE=BigDecimal.valueOf(189.59);
 	
 	public static final List<FaixaIrrf> TABELA_IRRF = Arrays.asList( 
-														 new FaixaIrrf(BigDecimal.valueOf(1903,99) 	,BigDecimal.valueOf(2826.65) 		 	,BigDecimal.valueOf(7.5/100) 	,BigDecimal.valueOf(142.80))
-														,new FaixaIrrf(BigDecimal.valueOf(2826.66) 	,BigDecimal.valueOf(3751.05) 		 	,BigDecimal.valueOf(15.0/100) 	,BigDecimal.valueOf(354.80))
-														,new FaixaIrrf(BigDecimal.valueOf(3751.06) 	,BigDecimal.valueOf(4664.68) 		 	,BigDecimal.valueOf(22.5/100) 	,BigDecimal.valueOf(636.13))
-														,new FaixaIrrf(BigDecimal.valueOf(4664.69) 	,BigDecimal.valueOf(Double.MAX_VALUE) 	,BigDecimal.valueOf(27.5/100) 	,BigDecimal.valueOf(869.36))
+														 new FaixaIrrf(BigDecimal.valueOf(1903,99) 	,BigDecimal.valueOf(2826.65) 		 	,BigDecimal.valueOf(7.5) 	,BigDecimal.valueOf(142.80))
+														,new FaixaIrrf(BigDecimal.valueOf(2826.66) 	,BigDecimal.valueOf(3751.05) 		 	,BigDecimal.valueOf(15.0) 	,BigDecimal.valueOf(354.80))
+														,new FaixaIrrf(BigDecimal.valueOf(3751.06) 	,BigDecimal.valueOf(4664.68) 		 	,BigDecimal.valueOf(22.5) 	,BigDecimal.valueOf(636.13))
+														,new FaixaIrrf(BigDecimal.valueOf(4664.69) 	,BigDecimal.valueOf(Double.MAX_VALUE) 	,BigDecimal.valueOf(27.5) 	,BigDecimal.valueOf(869.36))
 														);
 		
 

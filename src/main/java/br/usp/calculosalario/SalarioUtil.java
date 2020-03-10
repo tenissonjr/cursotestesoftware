@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 
 public class SalarioUtil {
 
-	private static final int NUMERO_CASAS_DECIMAS = 3;
+	private static final int NUMERO_CASAS_DECIMAS = 2;
+	
+	public static BigDecimal ZERO = arred(BigDecimal.ZERO);
 
 	public static BigDecimal arred(BigDecimal valor) {
 		if (valor!=null) {

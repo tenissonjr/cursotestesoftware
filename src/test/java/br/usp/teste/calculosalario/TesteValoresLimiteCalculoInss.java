@@ -11,6 +11,9 @@ import br.usp.calculosalario.DescontoSalarial;
 import br.usp.calculosalario.FaixaInss;
 import br.usp.calculosalario.exception.SalarioException;
 
+import static br.usp.calculosalario.SalarioUtil.arred;
+import static br.usp.calculosalario.SalarioUtil.toBigDecimal;
+
 public class TesteValoresLimiteCalculoInss extends AbstractTest {
 
 	@Test
@@ -44,7 +47,9 @@ public class TesteValoresLimiteCalculoInss extends AbstractTest {
 
 			assertEquals(descontoInss.getAliquota(), faixaInss.getAliquota());
 
-			assertEquals(descontoInss.getValor(), baseCalculoInss.multiply(faixaInss.getAliquota()));
+			BigDecimal valorInss = arred( baseCalculoInss.multiply(faixaInss.getAliquota()).divide(toBigDecimal(100)) ) ;
+			
+			assertEquals(descontoInss.getValor(), valorInss);
 
 		}
 
@@ -65,7 +70,7 @@ public class TesteValoresLimiteCalculoInss extends AbstractTest {
 				baseCalculoInss = FaixaInss.BASE_CALCULO_TETO ;
 			}
 						
-			BigDecimal valorInss = baseCalculoInss.multiply(faixaInss.getAliquota());
+			BigDecimal valorInss = arred( baseCalculoInss.multiply(faixaInss.getAliquota()).divide(toBigDecimal(100)) );
 		
 			assertEquals(descontoInss.getValor(), valorInss);
 
@@ -82,17 +87,24 @@ public class TesteValoresLimiteCalculoInss extends AbstractTest {
 			
 			DescontoSalarial descontoInss = calculadoraSalario.calcularDescontoInss(baseCalculoInss) ;
 
+			
+			
 			if(baseCalculoInss.compareTo(FaixaInss.BASE_CALCULO_TETO)>0) {
 				assertEquals(descontoInss.getAliquota(), faixaInss.getAliquota());
 				
 				baseCalculoInss = FaixaInss.BASE_CALCULO_TETO ;
+			
+				BigDecimal valorInss = arred( baseCalculoInss.multiply(faixaInss.getAliquota()).divide(toBigDecimal(100)) ) ;
 				
-				assertEquals(descontoInss.getValor(), baseCalculoInss.multiply(faixaInss.getAliquota()));
+				assertEquals(descontoInss.getValor(), valorInss  );
 				
 			}else {
+				
+				BigDecimal valorInss = arred( baseCalculoInss.multiply(faixaInss.getAliquota()).divide(toBigDecimal(100)) ) ;
+				
 				assertNotEquals(descontoInss.getAliquota(), faixaInss.getAliquota());
 
-				assertNotEquals(descontoInss.getValor(), baseCalculoInss.multiply(faixaInss.getAliquota()));
+				assertNotEquals(descontoInss.getValor(), valorInss);
 			}
 							
 			

@@ -13,15 +13,15 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class DescontoSalarial {
 	
-	   private BigDecimal baseCalculo = BigDecimal.ZERO;
+	   private BigDecimal baseCalculo = SalarioUtil.ZERO;
 	   
-	   private BigDecimal aliquota =BigDecimal.ZERO;
+	   private BigDecimal aliquota = SalarioUtil.ZERO;
 	   
-	   private BigDecimal deducaoTotalDevidoADependentes =BigDecimal.ZERO;
+	   private BigDecimal deducaoTotalDevidoADependentes =SalarioUtil.ZERO;
 	   
-	   private BigDecimal deducaoFaixa =BigDecimal.ZERO;
+	   private BigDecimal deducaoFaixa =SalarioUtil.ZERO;
 	   
-	   private BigDecimal valor =BigDecimal.ZERO;
+	   private BigDecimal valor =SalarioUtil.ZERO;
 	   
 	
 

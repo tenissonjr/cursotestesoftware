@@ -16,7 +16,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class Salario
 {
-   private BigDecimal salarioBruto = BigDecimal.ZERO;
+   private BigDecimal salarioBruto = SalarioUtil.ZERO;
    
    private int dependentesImpostoRenda= 0;
    
@@ -24,7 +24,7 @@ public class Salario
    
    private DescontoSalarial irrf = new  DescontoSalarial();
    
-   private BigDecimal salarioLiquido = BigDecimal.ZERO;
+   private BigDecimal salarioLiquido = SalarioUtil.ZERO;
    
    public Salario(BigDecimal salarioBruto) throws SalarioException {
 	  this(salarioBruto,0);

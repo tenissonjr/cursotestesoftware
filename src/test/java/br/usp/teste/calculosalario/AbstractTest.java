@@ -2,8 +2,6 @@ package br.usp.teste.calculosalario;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.math.BigDecimal;
-
 import org.junit.jupiter.api.BeforeAll;
 
 import br.usp.calculosalario.CalculadoraSalario;

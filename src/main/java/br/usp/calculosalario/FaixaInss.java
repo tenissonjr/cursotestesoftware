@@ -31,10 +31,10 @@ public class FaixaInss {
 	public static BigDecimal BASE_CALCULO_TETO=BigDecimal.valueOf(6101.06);
 	
 	public static final List<FaixaInss> TABELA_INSS = Arrays.asList( 
-														new FaixaInss(BigDecimal.valueOf(0.0) 		,BigDecimal.valueOf(1045.00) 		 	,BigDecimal.valueOf(7.5/100))
-														,new FaixaInss(BigDecimal.valueOf(1045.01) 	,BigDecimal.valueOf(2089.60) 			,BigDecimal.valueOf(9.0/100))
-														,new FaixaInss(BigDecimal.valueOf(2089.61) 	,BigDecimal.valueOf(3134.40) 			,BigDecimal.valueOf(12.0/100))
-														,new FaixaInss(BigDecimal.valueOf(3134.41) 	,BigDecimal.valueOf(Double.MAX_VALUE) 	,BigDecimal.valueOf(14.0/100))
+														new FaixaInss(BigDecimal.valueOf(0.0) 		,BigDecimal.valueOf(1045.00) 		 	,BigDecimal.valueOf(7.5))
+														,new FaixaInss(BigDecimal.valueOf(1045.01) 	,BigDecimal.valueOf(2089.60) 			,BigDecimal.valueOf(9.0))
+														,new FaixaInss(BigDecimal.valueOf(2089.61) 	,BigDecimal.valueOf(3134.40) 			,BigDecimal.valueOf(12.0))
+														,new FaixaInss(BigDecimal.valueOf(3134.41) 	,BigDecimal.valueOf(Double.MAX_VALUE) 	,BigDecimal.valueOf(14.0))
 														);
 		
 

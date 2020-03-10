@@ -11,6 +11,10 @@ import br.usp.calculosalario.DescontoSalarial;
 import br.usp.calculosalario.FaixaIrrf;
 import br.usp.calculosalario.exception.SalarioException;
 
+import static br.usp.calculosalario.SalarioUtil.arred;
+import static br.usp.calculosalario.SalarioUtil.toBigDecimal;
+
+
 public class TesteValoresLimiteCalculoIrrf extends AbstractTest {
 
 	@Test
@@ -42,12 +46,19 @@ public class TesteValoresLimiteCalculoIrrf extends AbstractTest {
 
 			assertEquals(descontoIrrf.getAliquota(), faixaIrrf.getAliquota());
 
-			BigDecimal impostoRenda = baseCalculoIrrf.multiply(faixaIrrf.getAliquota());
-			impostoRenda =impostoRenda.subtract(faixaIrrf.getDeducaoFaixa());
 			
-			System.out.println(descontoIrrf);
+			BigDecimal impostoRenda = arred( ( baseCalculoIrrf.multiply(faixaIrrf.getAliquota())
+					 .divide(toBigDecimal(100))
+					).subtract(faixaIrrf.getDeducaoFaixa())
+				)
+			 ;
 			
-			assertEquals((descontoIrrf.getValor().subtract(impostoRenda)).signum(),0);
+			if(impostoRenda.signum()<0) {
+				impostoRenda =arred( BigDecimal.ZERO);
+			}
+			
+			
+			assertEquals(impostoRenda,descontoIrrf.getValor());
 
 		}
 
@@ -64,8 +75,17 @@ public class TesteValoresLimiteCalculoIrrf extends AbstractTest {
 
 			assertEquals(descontoIrrf.getAliquota(), faixaIrrf.getAliquota());
 
-			BigDecimal impostoRenda = baseCalculoIrrf.multiply(faixaIrrf.getAliquota());
-			impostoRenda =impostoRenda.subtract(faixaIrrf.getDeducaoFaixa());
+			BigDecimal impostoRenda = arred( ( baseCalculoIrrf.multiply(faixaIrrf.getAliquota())
+												 .divide(toBigDecimal(100))
+												).subtract(faixaIrrf.getDeducaoFaixa())
+											)
+										 ;
+
+			if(impostoRenda.signum()<0) {
+				impostoRenda =arred( BigDecimal.ZERO);
+			}
+			
+			
 			
 			assertEquals((descontoIrrf.getValor().subtract(impostoRenda)).signum(),0);
 

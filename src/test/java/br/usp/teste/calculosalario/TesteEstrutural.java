@@ -42,8 +42,22 @@ public class TesteEstrutural extends AbstractTest {
 		Salario salarioCalculado = calculadoraSalario.calcular(salarioEsperado.getSalarioBruto()
 																,salarioEsperado.getDependentesImpostoRenda());
 		
+		
+		assertEquals(salarioEsperado.getInns().getBaseCalculo()	, salarioCalculado.getInns().getBaseCalculo())	;
+		assertEquals(salarioEsperado.getInns().getAliquota()	, salarioCalculado.getInns().getAliquota())	;
+		assertEquals(salarioEsperado.getInns().getValor()		, salarioCalculado.getInns().getValor())	;
+		
+		assertEquals(salarioEsperado.getIrrf().getDeducaoTotalDevidoADependentes()	, salarioCalculado.getIrrf().getDeducaoTotalDevidoADependentes())	;
+		assertEquals(salarioEsperado.getIrrf().getBaseCalculo()	, salarioCalculado.getIrrf().getBaseCalculo())	;
+		assertEquals(salarioEsperado.getIrrf().getAliquota()	, salarioCalculado.getIrrf().getAliquota())	;
+		
+		assertEquals(salarioEsperado.getIrrf().getValor()		, salarioCalculado.getIrrf().getValor())	;
+
+		
 		assertEquals(salarioEsperado.getSalarioLiquido(), salarioCalculado.getSalarioLiquido())	;
-		assertEquals(salarioEsperado.getInns().getAliquota(), salarioCalculado.getInns().getAliquota())	;
+		
+		
+		
 	}
 	
 	
@@ -53,11 +67,11 @@ public class TesteEstrutural extends AbstractTest {
 +--------------+--------+-----------------+-------------------+---------------+--------------+-----------------+---------------+----------------+-----------------+
 |  EMPREGADO   | Nº DEP |     SALÁRIO     | Base Cálculo INSS | Alíquota INSS |     INSS     | Base Cálculo IR | Alíquota IRRF |       IR       | SALÁRIO LÍQUIDO |
 +--------------+--------+-----------------+-------------------+---------------+--------------+-----------------+---------------+----------------+-----------------+
-| Empregado 0  |      0 |  R$  	   0,00   |  R$      0,00     | 7,50%         |  R$   0,00   |  R$    0,00     | 0,00%         |  R$  -         |  R$    0,00     |
-| Empregado 1  |      0 |  R$  1.000,00   |  R$  1.000,00     | 7,50%         |  R$  75,00   |  R$  925,00     | 0,00%         |  R$  -         |  R$  925,00     |
-| Empregado 2  |      1 |  R$  1.000,00   |  R$  1.000,00     | 7,50%         |  R$  75,00   |  R$  735,41     | 0,00%         |  R$  -         |  R$  925,00     |
-| Empregado 3  |      0 |  R$  2.000,00   |  R$  2.000,00     | 9,00%         |  R$  180,00  |  R$  1.820,00   | 0,00%         |  R$  -         |  R$  1.820,00   |
-| Empregado 4  |      1 |  R$  2.000,00   |  R$  2.000,00     | 9,00%         |  R$  180,00  |  R$  1.630,41   | 0,00%         |  R$  -         |  R$  1.820,00   |
+| Empregado 0  |      0 |  R$  	   0,00   |  R$      0,00     | 7,50%         |  R$   0,00   |  R$    0,00     | 7,50%         |  R$  -         |  R$    0,00     |
+| Empregado 1  |      0 |  R$  1.000,00   |  R$  1.000,00     | 7,50%         |  R$  75,00   |  R$  925,00     | 7,50%         |  R$  -         |  R$  925,00     |
+| Empregado 2  |      1 |  R$  1.000,00   |  R$  1.000,00     | 7,50%         |  R$  75,00   |  R$  735,41     | 7,50%         |  R$  -         |  R$  925,00     |
+| Empregado 3  |      0 |  R$  2.000,00   |  R$  2.000,00     | 9,00%         |  R$  180,00  |  R$  1.820,00   | 7,50%         |  R$  -         |  R$  1.820,00   |
+| Empregado 4  |      1 |  R$  2.000,00   |  R$  2.000,00     | 9,00%         |  R$  180,00  |  R$  1.630,41   | 7,50%         |  R$  -         |  R$  1.820,00   |
 | Empregado 5  |      0 |  R$  3.000,00   |  R$  3.000,00     | 12,00%        |  R$  360,00  |  R$  2.640,00   | 7,50%         |  R$  55,20     |  R$  2.584,80   |
 | Empregado 6  |      1 |  R$  3.000,00   |  R$  3.000,00     | 12,00%        |  R$  360,00  |  R$  2.450,41   | 7,50%         |  R$  40,98     |  R$  2.599,02   |
 | Empregado 7  |      5 |  R$  3.000,00   |  R$  3.000,00     | 12,00%        |  R$  360,00  |  R$  1.692,05   | 0,00%         |  R$  -         |  R$  2.640,00   |
@@ -87,12 +101,24 @@ public class TesteEstrutural extends AbstractTest {
 	
  */
 
+	
 	@Test
 	void testaSalarioBrutoValidoQuantidaddeDependentesValido_00() throws SalarioException {
 		
+		
 		Salario salarioEsperado = new Salario(toBigDecimal(0),0)
-										.aliquotaInss(toBigDecimal(0.075))
-										.salarioLiquido(toBigDecimal(0)) ;
+				.baseCalculoInns(toBigDecimal(0.00))
+				.aliquotaInss(toBigDecimal(7.5))
+				.valorInss(toBigDecimal(0))
+				
+				.deducaoTotalDevidoADependentesIrrf(toBigDecimal(0))
+				.baseCalculoIrrf(toBigDecimal(0))
+				.aliquotaIrrf(toBigDecimal(7.5))
+				.valorIrrf(toBigDecimal(0))
+				
+				.salarioLiquido(toBigDecimal(0.00)) ;		
+		
+		
 		
 		assertSalarioLiquidoCalculado(salarioEsperado);
 		
@@ -104,9 +130,17 @@ public class TesteEstrutural extends AbstractTest {
 	void testaSalarioBrutoValidoQuantidaddeDependentesValido_01() throws SalarioException {
 		
 		Salario salarioEsperado = new Salario(toBigDecimal(1000),0)
-				.aliquotaInss(toBigDecimal(0.075))
-				.salarioLiquido(toBigDecimal(925.00)) ;
-
+			.baseCalculoInns(toBigDecimal(1000.00))
+			.aliquotaInss(toBigDecimal(7.5))
+			.valorInss(toBigDecimal(75))
+			
+			.deducaoTotalDevidoADependentesIrrf(toBigDecimal(0))
+			.baseCalculoIrrf(toBigDecimal(925.00))
+			.aliquotaIrrf(toBigDecimal(7.5))
+			.valorIrrf(toBigDecimal(0))
+			
+			.salarioLiquido(toBigDecimal(925.00)) ;		
+		
 		assertSalarioLiquidoCalculado(salarioEsperado);	
 		
 	
@@ -117,58 +151,101 @@ public class TesteEstrutural extends AbstractTest {
 	void testaSalarioBrutoValidoQuantidaddeDependentesValido_02() throws SalarioException {
 		
 		Salario salarioEsperado = new Salario(toBigDecimal(1000),1)
-				.aliquotaInss(toBigDecimal(0.075))
-				.salarioLiquido(toBigDecimal(925.00)) ;
-
-		assertSalarioLiquidoCalculado(salarioEsperado);	
+				.baseCalculoInns(toBigDecimal(1000.00))
+				.aliquotaInss(toBigDecimal(7.5))
+				.valorInss(toBigDecimal(75))
+				
+				.deducaoTotalDevidoADependentesIrrf(toBigDecimal(189.59))
+				.baseCalculoIrrf(toBigDecimal(735.41))
+				.aliquotaIrrf(toBigDecimal(7.5))
+				.valorIrrf(toBigDecimal(0))
+				
+				.salarioLiquido(toBigDecimal(925.00)) ;		
+			
+			assertSalarioLiquidoCalculado(salarioEsperado);	
 		
 
 	}
 	
+		
 	@Test
 	void testaSalarioBrutoValidoQuantidaddeDependentesValido_03() throws SalarioException {
 		
 		Salario salarioEsperado = new Salario(toBigDecimal(2000),0)
-				.aliquotaInss(toBigDecimal(0.09))
-				.salarioLiquido(toBigDecimal(1820.00)) ;
-
-		assertSalarioLiquidoCalculado(salarioEsperado);	
+				.baseCalculoInns(toBigDecimal(2000.00))
+				.aliquotaInss(toBigDecimal(9.0))
+				.valorInss(toBigDecimal(180))
+				
+				.deducaoTotalDevidoADependentesIrrf(toBigDecimal(0))
+				.baseCalculoIrrf(toBigDecimal(1820))
+				.aliquotaIrrf(toBigDecimal(7.5))
+				.valorIrrf(toBigDecimal(0))
+				
+				.salarioLiquido(toBigDecimal(1820.00)) ;		
+			
+			assertSalarioLiquidoCalculado(salarioEsperado);	
 
 
 	}	
 
+	
 	@Test
 	void testaSalarioBrutoValidoQuantidaddeDependentesValido_04() throws SalarioException {
 		
 		Salario salarioEsperado = new Salario(toBigDecimal(2000),1)
-				.aliquotaInss(toBigDecimal(0.09))
-				.salarioLiquido(toBigDecimal(1820.00)) ;
-
-		assertSalarioLiquidoCalculado(salarioEsperado);	
+				.baseCalculoInns(toBigDecimal(2000.00))
+				.aliquotaInss(toBigDecimal(9.0))
+				.valorInss(toBigDecimal(180))
+				
+				.deducaoTotalDevidoADependentesIrrf(toBigDecimal(189.59))
+				.baseCalculoIrrf(toBigDecimal(1630.41))
+				.aliquotaIrrf(toBigDecimal(7.5))
+				.valorIrrf(toBigDecimal(0))
+				
+				.salarioLiquido(toBigDecimal(1820.00)) ;		
+			
+			assertSalarioLiquidoCalculado(salarioEsperado);	
 
 	}	
+	
 	
 	@Test
 	void testaSalarioBrutoValidoQuantidaddeDependentesValido_05() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(3000),0)
-				.aliquotaInss(toBigDecimal(0.12))
-				.salarioLiquido(toBigDecimal(2584.80)) ;
-
-		assertSalarioLiquidoCalculado(salarioEsperado);	
-
+				.baseCalculoInns(toBigDecimal(3000.00))
+				.aliquotaInss(toBigDecimal(12.0))
+				.valorInss(toBigDecimal(360))
+				
+				.deducaoTotalDevidoADependentesIrrf(toBigDecimal(0))
+				.baseCalculoIrrf(toBigDecimal(2640))
+				.aliquotaIrrf(toBigDecimal(7.5))
+				.valorIrrf(toBigDecimal(55.20))
+				
+				.salarioLiquido(toBigDecimal(2584.80)) ;		
+			
+			assertSalarioLiquidoCalculado(salarioEsperado);	
 		
 		
 	}		
+	
 	
 	@Test
 	void testaSalarioBrutoValidoQuantidaddeDependentesValido_06() throws SalarioException {
 		
 
-
 		Salario salarioEsperado = new Salario(toBigDecimal(3000),1)
-				.aliquotaInss(toBigDecimal(0.12))
+				
+				.baseCalculoInns(toBigDecimal(3000.00))
+				.aliquotaInss(toBigDecimal(12))
+				.valorInss(toBigDecimal(360))
+				
+				.deducaoTotalDevidoADependentesIrrf(toBigDecimal(189.59))
+				.baseCalculoIrrf(toBigDecimal(2450.41))
+				.aliquotaIrrf(toBigDecimal(7.5))
+				.valorIrrf(toBigDecimal(40.98))
+				
 				.salarioLiquido(toBigDecimal(2599.02)) ;
 
 		assertSalarioLiquidoCalculado(salarioEsperado);			

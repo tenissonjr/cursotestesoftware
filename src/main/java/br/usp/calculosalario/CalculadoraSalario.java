@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 import br.usp.calculosalario.exception.SalarioException;
 import static br.usp.calculosalario.SalarioUtil.arred;
+import static br.usp.calculosalario.SalarioUtil.toBigDecimal;
+
 
 public final class CalculadoraSalario {
 
@@ -23,13 +25,14 @@ public final class CalculadoraSalario {
 		descontoSalarial.setBaseCalculo(baseCalculoInss);
 		
 		for (FaixaInss faixaInss : FaixaInss.TABELA_INSS) {
+
 			if( faixaInss.contemValor(baseCalculoInss)) {
 
-				descontoSalarial.setAliquota(faixaInss.getAliquota());
-
-				BigDecimal valorInss = baseCalculoInss.multiply(faixaInss.getAliquota());
+								
+				descontoSalarial.setAliquota( faixaInss.getAliquota() );
+				descontoSalarial.setValor(arred(baseCalculoInss.multiply(faixaInss.getAliquota().divide(toBigDecimal(100)))));
 				
-				descontoSalarial.setValor(valorInss);
+				break;
 			}
 		}
 		return descontoSalarial;
@@ -39,33 +42,43 @@ public final class CalculadoraSalario {
 		return calcularDescontoIrrf(baseCalculoIrrf,0);
 	}
 
-	public DescontoSalarial calcularDescontoIrrf(BigDecimal baseCalculoIrrf,int dependentesImpostoRenda) {
+	public DescontoSalarial calcularDescontoIrrf(BigDecimal baseCalculoIrrfParam,int dependentesImpostoRenda) {
 		
 		DescontoSalarial descontoSalarial = new DescontoSalarial();
 		
 
-		BigDecimal deducaoTotalDevidoADependentes = FaixaIrrf.DEDUCAO_POR_DEPENDENTE.multiply(BigDecimal.valueOf(dependentesImpostoRenda))  ;		
+		BigDecimal deducaoTotalDevidoADependentes = arred( FaixaIrrf.DEDUCAO_POR_DEPENDENTE.multiply(BigDecimal.valueOf(dependentesImpostoRenda)) ) ;		
 		
-		baseCalculoIrrf = baseCalculoIrrf
-						.subtract(deducaoTotalDevidoADependentes  );
+		BigDecimal baseCalculoIrrf = arred(baseCalculoIrrfParam.subtract(deducaoTotalDevidoADependentes ));
 		
 		descontoSalarial.setDeducaoTotalDevidoADependentes(deducaoTotalDevidoADependentes);
 		descontoSalarial.setBaseCalculo(baseCalculoIrrf);
 		
-		if (baseCalculoIrrf.signum()>0) {
+		
 			for (FaixaIrrf faixaIrrf : FaixaIrrf.TABELA_IRRF) {
 				if( faixaIrrf.contemValor(baseCalculoIrrf)) {
+					
 					descontoSalarial.setAliquota(faixaIrrf.getAliquota());
 					descontoSalarial.setDeducaoFaixa(faixaIrrf.getDeducaoFaixa());
+					
+					BigDecimal impostoRenda = arred( (baseCalculoIrrf
+														.multiply(descontoSalarial.getAliquota())
+														.divide(toBigDecimal(100))
+													)		
+														.subtract(descontoSalarial.getDeducaoFaixa()) 
+													);
+					
+					if(impostoRenda.signum()<0) {
+						impostoRenda =arred( BigDecimal.ZERO);
+					}
+
+					descontoSalarial.setValor(impostoRenda);
+					
+					break ;
+					
 				}
-			}
-			BigDecimal impostoRenda = baseCalculoIrrf.multiply(descontoSalarial.getAliquota());
-			if(impostoRenda.signum()>0) {
-				impostoRenda =impostoRenda.subtract(descontoSalarial.getDeducaoFaixa());
-			}
-			if(impostoRenda.signum()>0) {
-				descontoSalarial.setValor(impostoRenda);
-			}
+		
+
 		}
 
 		return descontoSalarial;
@@ -79,8 +92,8 @@ public final class CalculadoraSalario {
 		
 		salario.setInns(calcularDescontoInss(salarioBruto));
 
-		BigDecimal baseCalculoIrrf = salario.getSalarioBruto()
-				.subtract(salario.getInns().getValor())
+		BigDecimal baseCalculoIrrf = arred( salario.getSalarioBruto()
+				.subtract(salario.getInns().getValor()) )
 				;
 		
 		salario.setIrrf(calcularDescontoIrrf(baseCalculoIrrf, salario.getDependentesImpostoRenda()));
