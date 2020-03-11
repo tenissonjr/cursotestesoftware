@@ -1,20 +1,24 @@
 package br.usp.calculosalario.teste;
 
 import static br.usp.calculosalario.util.CalculadoraSalarioUtil.toBigDecimal;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 import java.math.BigDecimal;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
+import br.usp.calculosalario.CalculadoraSalario;
 import br.usp.calculosalario.dominio.Salario;
 import br.usp.calculosalario.exception.DependenteInvalidoException;
 import br.usp.calculosalario.exception.SalarioBrutoInvalidoException;
 import br.usp.calculosalario.exception.SalarioException;
 
-class TesteClassesEquivalênciaValoresEntrada extends AbstractTest {
+public class TesteClassesEquivalênciaValoresEntrada  {
 
+	
+	private CalculadoraSalario calculadoraSalario = new CalculadoraSalario();
+	
 /*
  * 
 +------------------------+---------------------------------+-----------------------------------+
@@ -25,34 +29,34 @@ class TesteClassesEquivalênciaValoresEntrada extends AbstractTest {
 +------------------------+---------------------------------+-----------------------------------+
  */
 	
-	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesInvalido() throws SalarioException {
+	@Test(expected = DependenteInvalidoException.class)
+	public void testaSalarioBrutoValidoQuantidaddeDependentesInvalido() throws SalarioException {
 
-		Assertions.assertThrows(DependenteInvalidoException.class, () -> {calculadoraSalario.calcular(BigDecimal.valueOf(1.0),-1);});
+		calculadoraSalario.calcular(BigDecimal.valueOf(1.0),-1);
 
 	}	
 	
-	@Test
-	void testaSalarioBrutoInvalidoQuantidaddeDependentesValido() throws SalarioException {
+	@Test(expected = SalarioBrutoInvalidoException.class)
+	public void testaSalarioBrutoInvalidoQuantidaddeDependentesValido() throws SalarioException {
 
-		Assertions.assertThrows(SalarioBrutoInvalidoException.class, () -> {calculadoraSalario.calcular(null,0);});
-		Assertions.assertThrows(SalarioBrutoInvalidoException.class, () -> {calculadoraSalario.calcular(BigDecimal.valueOf(-1),0);});
+		calculadoraSalario.calcular(null,0);
+		calculadoraSalario.calcular(BigDecimal.valueOf(-1),0);
 
 	}
 
 
-	@Test
-	void testaSalarioBrutoInvalidoQuantidaddeDependentesInvalido() throws SalarioException {
+	@Test(expected = SalarioBrutoInvalidoException.class)
+	public void testaSalarioBrutoInvalidoQuantidaddeDependentesInvalido() throws SalarioException {
 
-		Assertions.assertThrows(SalarioBrutoInvalidoException.class, () -> {calculadoraSalario.calcular(null,0-1);});
-		Assertions.assertThrows(SalarioBrutoInvalidoException.class, () -> {calculadoraSalario.calcular(BigDecimal.valueOf(-1),-3);});
+		calculadoraSalario.calcular(null,0-1);
+		calculadoraSalario.calcular(BigDecimal.valueOf(-1),-3);
 
 	}	
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido() throws SalarioException {
 
 		Salario salario = calculadoraSalario.calcular(toBigDecimal(0),0);
-		
+
 		assertEquals(toBigDecimal(0), salario.getSalarioLiquido())	;
 
 	}	

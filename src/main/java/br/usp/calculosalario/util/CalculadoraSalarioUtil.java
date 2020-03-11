@@ -16,8 +16,21 @@ public class CalculadoraSalarioUtil {
 		return valor;
 	}
 	
+	public static BigDecimal arred(double valor) {
+			return arred(toBigDecimal(valor));
+	}
+
+	
 	public static BigDecimal toBigDecimal(double d) {
 		return arred( BigDecimal.valueOf(d));
+	}	
+	
+	public static BigDecimal adicionaDecimo(BigDecimal valor) {
+		return arred( valor.add(BigDecimal.valueOf(0.01)));
+	}	
+
+	public static BigDecimal subtraiDecimo(BigDecimal valor) {
+		return arred( valor.subtract(BigDecimal.valueOf(0.01)));
 	}	
 	
 }

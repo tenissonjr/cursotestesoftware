@@ -1,83 +1,79 @@
 package br.usp.calculosalario.teste;
 
+import static br.usp.calculosalario.desconto.FaixaInss.FAIXA_1;
+import static br.usp.calculosalario.desconto.FaixaInss.FAIXA_2;
+import static br.usp.calculosalario.desconto.FaixaInss.FAIXA_3;
+import static br.usp.calculosalario.desconto.FaixaInss.FAIXA_4;
+import static br.usp.calculosalario.util.CalculadoraSalarioUtil.subtraiDecimo;
 import static br.usp.calculosalario.util.CalculadoraSalarioUtil.arred;
+import static br.usp.calculosalario.util.CalculadoraSalarioUtil.adicionaDecimo;
 import static br.usp.calculosalario.util.CalculadoraSalarioUtil.toBigDecimal;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 
-import org.junit.jupiter.api.Test;
-
+import br.usp.calculosalario.CalculadoraSalario;
 import br.usp.calculosalario.desconto.DescontoSalarial;
-import br.usp.calculosalario.exception.SalarioException;
+import br.usp.calculosalario.desconto.FaixaInss;
 
-class TesteValoresLimiteCalculoInss extends AbstractTest {
+public class TesteValoresLimiteCalculoInss  {
 
+	private CalculadoraSalario calculadoraSalario = new CalculadoraSalario();	
 	
-	private static final double VALOR_MAXIMO_BASE_INSS = 6101.06;
+	private void assertDescontoCalculadoInss(BigDecimal baseCalculoInssParam, double valorEsperadoAliquotaParam )  {
 
-	private void assertDescontoCalculadoInss(double baseCalculoInssParam, double valorEsperadoAliquotaParam )  {
-
-		BigDecimal baseCalculoInss 			= toBigDecimal( baseCalculoInssParam);
-		BigDecimal valorEsperadoAliquota 	= toBigDecimal(valorEsperadoAliquotaParam);
+		BigDecimal baseCalculoEsperado 		= toBigDecimal( Math.min(baseCalculoInssParam.doubleValue(),FaixaInss.TETO_BASE_CALCULO.doubleValue()));
+		BigDecimal valorAliquotaEsperado 	= toBigDecimal(valorEsperadoAliquotaParam);
+		BigDecimal valorEsperado			= arred(baseCalculoEsperado.multiply(valorAliquotaEsperado).divide(toBigDecimal(100))) ;
 		
+		DescontoSalarial descontoSalarialInss = calculadoraSalario.calcularDescontoInss(baseCalculoInssParam) ;
 		
-		DescontoSalarial descontoSalarialInss = calculadoraSalario.calcularDescontoInss(baseCalculoInss) ;
-		
-		
-		BigDecimal baseCalculoInssMax 		= toBigDecimal( Math.min(baseCalculoInssParam,VALOR_MAXIMO_BASE_INSS));
-		BigDecimal valorEsperadoInss		= arred(baseCalculoInssMax.multiply(valorEsperadoAliquota).divide(toBigDecimal(100))) ;
-		
-		
-		assertEquals(baseCalculoInssMax		, descontoSalarialInss.getBaseCalculo());
-		assertEquals(valorEsperadoAliquota	, descontoSalarialInss.getAliquota());
-		assertEquals(valorEsperadoInss		, descontoSalarialInss.getValor());
-
+		assertEquals(baseCalculoEsperado	, descontoSalarialInss.getBaseCalculo());
+		assertEquals(valorAliquotaEsperado	, descontoSalarialInss.getAliquota());
+		assertEquals(valorEsperado			, descontoSalarialInss.getValor());
 	}
 		
 	
 	@Test
-	void testaAliquotasInssQuandoBaseCalculoIgualAnteriorFaixaInicial()  {
+	public void testaAliquotasInssQuandoBaseCalculoMenorLimitesInferioresFaixas()  {
 
-		assertDescontoCalculadoInss(-0.01 	,   0.0);
-		assertDescontoCalculadoInss(1045.00	,   7.5);
-		assertDescontoCalculadoInss(2089.60	,	9.0);
-		assertDescontoCalculadoInss(3134.40	,  12.00);
-
-	}
-
-	@Test
-	void testaAliquotasInssQuandoBaseCalculoIgualFaixaInicial()  {
+		assertDescontoCalculadoInss(subtraiDecimo(FAIXA_1.getLimiteInferior()) ,   0.0);
+		assertDescontoCalculadoInss(subtraiDecimo(FAIXA_2.getLimiteInferior())	,   7.5);
+		assertDescontoCalculadoInss(subtraiDecimo(FAIXA_3.getLimiteInferior())	,	9.0);
+		assertDescontoCalculadoInss(subtraiDecimo(FAIXA_4.getLimiteInferior())	,  12.00);
 		
-		assertDescontoCalculadoInss( 0.00 	,    7.5);
-		assertDescontoCalculadoInss(1045.01	,    9.0);
-		assertDescontoCalculadoInss(2089.61	,   12.0);
-		assertDescontoCalculadoInss(3134.41	,   14.0);
-
 	}
 
 	@Test
-	void testaAliquotasInssQuandoBaseCalculoIgualFaixaFinal() throws SalarioException {
-
-		assertDescontoCalculadoInss(1045.00	,    7.5);
-		assertDescontoCalculadoInss(2089.60	,    9.0);
-		assertDescontoCalculadoInss(3134.40	,   12.0);
-		assertDescontoCalculadoInss(6101.06	,   14.0);
+	public void testaAliquotasInssQuandoBaseCalculoIgualLimitesInferioresFaixas()  {
 		
+		assertDescontoCalculadoInss(FAIXA_1.getLimiteInferior() ,    7.5);
+		assertDescontoCalculadoInss(FAIXA_2.getLimiteInferior()	,    9.0);
+		assertDescontoCalculadoInss(FAIXA_3.getLimiteInferior()	,   12.0);
+		assertDescontoCalculadoInss(FAIXA_4.getLimiteInferior()	,   14.0);
 
 	}
 
 	@Test
-	void testaAliquotasInssQuandoBaseCalculoIgualFaixaFinalMaisUm() throws SalarioException {
+	public void testaAliquotasInssQuandoBaseCalculoIgualLimitesSuperioresFaixas()  {
 
-		assertDescontoCalculadoInss(1045.01	,    9.0);
-		assertDescontoCalculadoInss(2089.61	,   12.0);
-		assertDescontoCalculadoInss(3134.41	,   14.0);
-		assertDescontoCalculadoInss(6101.07	,   14.0);
-		assertDescontoCalculadoInss(8000.00	,   14.0);
-		assertDescontoCalculadoInss(99999999,   14.0);
+		assertDescontoCalculadoInss(FAIXA_1.getLimiteSuperior() ,    7.5);
+		assertDescontoCalculadoInss(FAIXA_2.getLimiteSuperior()	,    9.0);
+		assertDescontoCalculadoInss(FAIXA_3.getLimiteSuperior()	,   12.0);
+		assertDescontoCalculadoInss(FAIXA_4.getLimiteSuperior()	,   14.0);
 
+	}
+
+	@Test
+	public void testaAliquotasInssQuandoBaseCalculoMaiorLimitesSuperioresFaixas() {
+
+		assertDescontoCalculadoInss(adicionaDecimo(FAIXA_1.getLimiteSuperior())	,    9.0);
+		assertDescontoCalculadoInss(adicionaDecimo(FAIXA_2.getLimiteSuperior())	,   12.0);
+		assertDescontoCalculadoInss(adicionaDecimo(FAIXA_3.getLimiteSuperior())	,   14.0);
+		assertDescontoCalculadoInss(adicionaDecimo(FAIXA_4.getLimiteSuperior())	,   14.0);
+		
 	}
 
 }

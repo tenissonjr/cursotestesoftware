@@ -14,9 +14,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
  		<java.version>1.8</java.version>
-        <junit-jupiter.version>5.5.2</junit-jupiter.version>		
-        <junit-platform-runner.version>1.5.0</junit-platform-runner.version>        
-        <junit-jupiter-engine.version>5.5.0</junit-jupiter-engine.version>
 	</properties>
 
 	<build>
@@ -58,22 +55,13 @@
 	</build>
 
 	<dependencies>
-			<dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>${junit-jupiter-engine.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-            <version>${junit-jupiter-engine.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-runner</artifactId>
-            <version>${junit-platform-runner.version}</version>
-        </dependency>
-
+	
+		 <dependency>
+	      <groupId>junit</groupId>
+	      <artifactId>junit</artifactId>
+	      <version>4.13</version>
+	      <scope>test</scope>
+	    </dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>

@@ -1,15 +1,18 @@
 package br.usp.calculosalario.teste;
 
 import static br.usp.calculosalario.util.CalculadoraSalarioUtil.toBigDecimal;
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
+import br.usp.calculosalario.CalculadoraSalario;
 import br.usp.calculosalario.dominio.Salario;
 import br.usp.calculosalario.exception.SalarioException;
 
-class TesteEstrutural extends AbstractTest {
+public class TesteEstrutural {
 
+	private CalculadoraSalario calculadoraSalario = new CalculadoraSalario();	
+	
 		
 	private void assertSalarioLiquidoCalculado(Salario salarioEsperado) throws SalarioException {
 		
@@ -77,7 +80,7 @@ class TesteEstrutural extends AbstractTest {
 
 	
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_00() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_00() throws SalarioException {
 		
 		
 		Salario salarioEsperado = new Salario(toBigDecimal(0),0)
@@ -101,7 +104,7 @@ class TesteEstrutural extends AbstractTest {
 
 
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_01() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_01() throws SalarioException {
 		
 		Salario salarioEsperado = new Salario(toBigDecimal(1000),0)
 			.baseCalculoInns(toBigDecimal(1000.00))
@@ -122,7 +125,7 @@ class TesteEstrutural extends AbstractTest {
 	}
 
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_02() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_02() throws SalarioException {
 		
 		Salario salarioEsperado = new Salario(toBigDecimal(1000),1)
 				.baseCalculoInns(toBigDecimal(1000.00))
@@ -143,7 +146,7 @@ class TesteEstrutural extends AbstractTest {
 	
 		
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_03() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_03() throws SalarioException {
 		
 		Salario salarioEsperado = new Salario(toBigDecimal(2000),0)
 				.baseCalculoInns(toBigDecimal(2000.00))
@@ -164,7 +167,7 @@ class TesteEstrutural extends AbstractTest {
 
 	
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_04() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_04() throws SalarioException {
 		
 		Salario salarioEsperado = new Salario(toBigDecimal(2000),1)
 				.baseCalculoInns(toBigDecimal(2000.00))
@@ -184,7 +187,7 @@ class TesteEstrutural extends AbstractTest {
 	
 	
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_05() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_05() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(3000),0)
@@ -206,7 +209,7 @@ class TesteEstrutural extends AbstractTest {
 	
 	
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_06() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_06() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(3000),1)
@@ -227,7 +230,7 @@ class TesteEstrutural extends AbstractTest {
 	}	
 	
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_07() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_07() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(3000),5)
@@ -248,7 +251,7 @@ class TesteEstrutural extends AbstractTest {
 	}	
 
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_08() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_08() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(4000),0)
@@ -269,7 +272,7 @@ class TesteEstrutural extends AbstractTest {
 	}	
 	
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_09() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_09() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(4000),2)
@@ -290,7 +293,7 @@ class TesteEstrutural extends AbstractTest {
 	}		
 	
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_10() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_10() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(4000),4)
@@ -312,7 +315,7 @@ class TesteEstrutural extends AbstractTest {
 
 	
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_11() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_11() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(4000),9)
@@ -333,7 +336,7 @@ class TesteEstrutural extends AbstractTest {
 	}	
 
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_12() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_12() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(5000),0)
@@ -354,7 +357,7 @@ class TesteEstrutural extends AbstractTest {
 	}	
 		
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_13() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_13() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(5000),3)
@@ -375,7 +378,7 @@ class TesteEstrutural extends AbstractTest {
 	}	
 	
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_14() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_14() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(5000),8)
@@ -397,7 +400,7 @@ class TesteEstrutural extends AbstractTest {
 	
 
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_15() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_15() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(5000),13)
@@ -418,7 +421,7 @@ class TesteEstrutural extends AbstractTest {
 	}		
 	
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_16() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_16() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(8000),0)
@@ -439,7 +442,7 @@ class TesteEstrutural extends AbstractTest {
 	}		
 
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_17() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_17() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(8000),14)
@@ -460,7 +463,7 @@ class TesteEstrutural extends AbstractTest {
 	}		
 	
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_18() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_18() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(8000),20)
@@ -481,7 +484,7 @@ class TesteEstrutural extends AbstractTest {
 	}		
 	
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_19() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_19() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(8000),25)
@@ -502,7 +505,7 @@ class TesteEstrutural extends AbstractTest {
 	}	
 	
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_20() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_20() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(8000),30)
@@ -523,7 +526,7 @@ class TesteEstrutural extends AbstractTest {
 	}		
 	
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_21() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_21() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(10000),0)
@@ -544,7 +547,7 @@ class TesteEstrutural extends AbstractTest {
 	}		
 			
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_22() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_22() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(10000),25)
@@ -565,7 +568,7 @@ class TesteEstrutural extends AbstractTest {
 	}
 	
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_23() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_23() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(10000),30)
@@ -587,7 +590,7 @@ class TesteEstrutural extends AbstractTest {
 
 
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_24() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_24() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(10000),35)
@@ -608,7 +611,7 @@ class TesteEstrutural extends AbstractTest {
 	}	
 	
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_25() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_25() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(10000),40)
@@ -629,7 +632,7 @@ class TesteEstrutural extends AbstractTest {
 	}	
 	
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_26() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_26() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(15000),0)
@@ -650,7 +653,7 @@ class TesteEstrutural extends AbstractTest {
 	}		
 
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_27() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_27() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(18000),1)
@@ -671,7 +674,7 @@ class TesteEstrutural extends AbstractTest {
 	}		
 	
 	@Test
-	void testaSalarioBrutoValidoQuantidaddeDependentesValido_28() throws SalarioException {
+	public void testaSalarioBrutoValidoQuantidaddeDependentesValido_28() throws SalarioException {
 		
 
 		Salario salarioEsperado = new Salario(toBigDecimal(20000),5)

@@ -24,8 +24,8 @@ public final class CalculadoraSalario {
 		
 		DescontoSalarial descontoSalarial = new DescontoSalarial();
 		
-		if (baseCalculoInss.compareTo(FaixaInss.BASE_CALCULO_TETO)>0) {
-			baseCalculoInss = FaixaInss.BASE_CALCULO_TETO ;
+		if (baseCalculoInss.compareTo(FaixaInss.TETO_BASE_CALCULO)>0) {
+			baseCalculoInss = FaixaInss.TETO_BASE_CALCULO ;
 		}		
 		
 		descontoSalarial.setBaseCalculo(baseCalculoInss);
@@ -84,7 +84,6 @@ public final class CalculadoraSalario {
 					
 				}
 		
-
 		}
 
 		return descontoSalarial;
