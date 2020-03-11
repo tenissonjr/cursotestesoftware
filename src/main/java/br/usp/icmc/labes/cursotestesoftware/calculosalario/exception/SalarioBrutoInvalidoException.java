@@ -1,4 +1,4 @@
-package br.usp.calculosalario.exception;
+package br.usp.icmc.labes.cursotestesoftware.calculosalario.exception;
 
 public class SalarioBrutoInvalidoException extends SalarioException {
 

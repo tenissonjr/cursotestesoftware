@@ -1,13 +1,13 @@
-package br.usp.calculosalario.teste;
-
-import static br.usp.calculosalario.util.CalculadoraSalarioUtil.toBigDecimal;
+package br.usp.icmc.labes.cursotestesoftware.calculosalario.teste;
 
 import org.junit.Test;
+
+import static br.usp.icmc.labes.cursotestesoftware.calculosalario.util.CalculadoraSalarioUtil.toBigDecimal;
 import static org.junit.Assert.assertEquals;
 
-import br.usp.calculosalario.CalculadoraSalario;
-import br.usp.calculosalario.dominio.Salario;
-import br.usp.calculosalario.exception.SalarioException;
+import br.usp.icmc.labes.cursotestesoftware.calculosalario.CalculadoraSalario;
+import br.usp.icmc.labes.cursotestesoftware.calculosalario.dominio.Salario;
+import br.usp.icmc.labes.cursotestesoftware.calculosalario.exception.SalarioException;
 
 public class TesteEstrutural {
 

@@ -1,16 +1,16 @@
-package br.usp.calculosalario;
+package br.usp.icmc.labes.cursotestesoftware.calculosalario;
 
-import static br.usp.calculosalario.util.CalculadoraSalarioUtil.arred;
-import static br.usp.calculosalario.util.CalculadoraSalarioUtil.toBigDecimal;
+import static br.usp.icmc.labes.cursotestesoftware.calculosalario.util.CalculadoraSalarioUtil.arred;
+import static br.usp.icmc.labes.cursotestesoftware.calculosalario.util.CalculadoraSalarioUtil.toBigDecimal;
 
 import java.math.BigDecimal;
 
-import br.usp.calculosalario.desconto.DescontoSalarial;
-import br.usp.calculosalario.desconto.FaixaInss;
-import br.usp.calculosalario.desconto.FaixaIrrf;
-import br.usp.calculosalario.dominio.Salario;
-import br.usp.calculosalario.exception.SalarioException;
-import br.usp.calculosalario.util.CalculadoraSalarioUtil;
+import br.usp.icmc.labes.cursotestesoftware.calculosalario.desconto.DescontoSalarial;
+import br.usp.icmc.labes.cursotestesoftware.calculosalario.desconto.FaixaInss;
+import br.usp.icmc.labes.cursotestesoftware.calculosalario.desconto.FaixaIrrf;
+import br.usp.icmc.labes.cursotestesoftware.calculosalario.dominio.Salario;
+import br.usp.icmc.labes.cursotestesoftware.calculosalario.exception.SalarioException;
+import br.usp.icmc.labes.cursotestesoftware.calculosalario.util.CalculadoraSalarioUtil;
 
 
 public final class CalculadoraSalario {
@@ -24,9 +24,7 @@ public final class CalculadoraSalario {
 		
 		DescontoSalarial descontoSalarial = new DescontoSalarial();
 		
-		if (baseCalculoInss.compareTo(FaixaInss.TETO_BASE_CALCULO)>0) {
-			baseCalculoInss = FaixaInss.TETO_BASE_CALCULO ;
-		}		
+		baseCalculoInss = CalculadoraSalarioUtil.limitarValorTeto(baseCalculoInss,FaixaInss.TETO_BASE_CALCULO);
 		
 		descontoSalarial.setBaseCalculo(baseCalculoInss);
 		
@@ -60,9 +58,6 @@ public final class CalculadoraSalario {
 		descontoSalarial.setDeducaoTotalDevidoADependentes(deducaoTotalDevidoADependentes);
 		
 		descontoSalarial.setBaseCalculo(baseCalculoIrrf);
-		descontoSalarial.setAliquota(CalculadoraSalarioUtil.ZERO);
-		descontoSalarial.setValor(CalculadoraSalarioUtil.ZERO);
-		
 		
 			for (FaixaIrrf faixaIrrf : FaixaIrrf.TABELA_IRRF) {
 				if( faixaIrrf.contemValor(baseCalculoIrrf)) {

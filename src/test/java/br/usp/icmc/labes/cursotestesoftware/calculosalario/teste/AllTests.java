@@ -1,4 +1,4 @@
-package br.usp.calculosalario.teste;
+package br.usp.icmc.labes.cursotestesoftware.calculosalario.teste;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

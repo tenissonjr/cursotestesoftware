@@ -1,6 +1,6 @@
-package br.usp.calculosalario.desconto;
+package br.usp.icmc.labes.cursotestesoftware.calculosalario.desconto;
 
-import static br.usp.calculosalario.util.CalculadoraSalarioUtil.arred;
+import static br.usp.icmc.labes.cursotestesoftware.calculosalario.util.CalculadoraSalarioUtil.arred;
 
 import java.math.BigDecimal;
 import java.util.Arrays;

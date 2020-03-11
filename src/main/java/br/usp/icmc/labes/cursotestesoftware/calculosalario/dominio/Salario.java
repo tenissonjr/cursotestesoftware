@@ -1,12 +1,12 @@
-package br.usp.calculosalario.dominio;
+package br.usp.icmc.labes.cursotestesoftware.calculosalario.dominio;
 
 import java.math.BigDecimal;
 
-import br.usp.calculosalario.desconto.DescontoSalarial;
-import br.usp.calculosalario.exception.DependenteInvalidoException;
-import br.usp.calculosalario.exception.SalarioBrutoInvalidoException;
-import br.usp.calculosalario.exception.SalarioException;
-import br.usp.calculosalario.util.CalculadoraSalarioUtil;
+import br.usp.icmc.labes.cursotestesoftware.calculosalario.desconto.DescontoSalarial;
+import br.usp.icmc.labes.cursotestesoftware.calculosalario.exception.DependenteInvalidoException;
+import br.usp.icmc.labes.cursotestesoftware.calculosalario.exception.SalarioBrutoInvalidoException;
+import br.usp.icmc.labes.cursotestesoftware.calculosalario.exception.SalarioException;
+import br.usp.icmc.labes.cursotestesoftware.calculosalario.util.CalculadoraSalarioUtil;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

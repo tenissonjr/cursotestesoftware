@@ -1,22 +1,22 @@
-package br.usp.calculosalario.teste;
+package br.usp.icmc.labes.cursotestesoftware.calculosalario.teste;
 
-import static br.usp.calculosalario.desconto.FaixaInss.FAIXA_1;
-import static br.usp.calculosalario.desconto.FaixaInss.FAIXA_2;
-import static br.usp.calculosalario.desconto.FaixaInss.FAIXA_3;
-import static br.usp.calculosalario.desconto.FaixaInss.FAIXA_4;
-import static br.usp.calculosalario.util.CalculadoraSalarioUtil.subtraiDecimo;
-import static br.usp.calculosalario.util.CalculadoraSalarioUtil.arred;
-import static br.usp.calculosalario.util.CalculadoraSalarioUtil.adicionaDecimo;
-import static br.usp.calculosalario.util.CalculadoraSalarioUtil.toBigDecimal;
+import static br.usp.icmc.labes.cursotestesoftware.calculosalario.desconto.FaixaInss.FAIXA_1;
+import static br.usp.icmc.labes.cursotestesoftware.calculosalario.desconto.FaixaInss.FAIXA_2;
+import static br.usp.icmc.labes.cursotestesoftware.calculosalario.desconto.FaixaInss.FAIXA_3;
+import static br.usp.icmc.labes.cursotestesoftware.calculosalario.desconto.FaixaInss.FAIXA_4;
+import static br.usp.icmc.labes.cursotestesoftware.calculosalario.util.CalculadoraSalarioUtil.adicionaDecimo;
+import static br.usp.icmc.labes.cursotestesoftware.calculosalario.util.CalculadoraSalarioUtil.arred;
+import static br.usp.icmc.labes.cursotestesoftware.calculosalario.util.CalculadoraSalarioUtil.subtraiDecimo;
+import static br.usp.icmc.labes.cursotestesoftware.calculosalario.util.CalculadoraSalarioUtil.toBigDecimal;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 
-import br.usp.calculosalario.CalculadoraSalario;
-import br.usp.calculosalario.desconto.DescontoSalarial;
-import br.usp.calculosalario.desconto.FaixaInss;
+import br.usp.icmc.labes.cursotestesoftware.calculosalario.CalculadoraSalario;
+import br.usp.icmc.labes.cursotestesoftware.calculosalario.desconto.DescontoSalarial;
+import br.usp.icmc.labes.cursotestesoftware.calculosalario.desconto.FaixaInss;
 
 public class TesteValoresLimiteCalculoInss  {
 

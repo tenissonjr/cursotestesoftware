@@ -1,4 +1,4 @@
-package br.usp.calculosalario.util;
+package br.usp.icmc.labes.cursotestesoftware.calculosalario.util;
 
 import java.math.BigDecimal;
 
@@ -31,6 +31,11 @@ public class CalculadoraSalarioUtil {
 
 	public static BigDecimal subtraiDecimo(BigDecimal valor) {
 		return arred( valor.subtract(BigDecimal.valueOf(0.01)));
-	}	
+	}
+
+	public static BigDecimal limitarValorTeto(BigDecimal valor, BigDecimal teto) {
+		  return (valor.compareTo(teto) > 0 ? teto : valor);
+	}
+
 	
 }

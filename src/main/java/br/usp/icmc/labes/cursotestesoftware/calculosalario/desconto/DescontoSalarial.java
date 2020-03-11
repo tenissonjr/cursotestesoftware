@@ -1,8 +1,8 @@
-package br.usp.calculosalario.desconto;
+package br.usp.icmc.labes.cursotestesoftware.calculosalario.desconto;
 
 import java.math.BigDecimal;
 
-import br.usp.calculosalario.util.CalculadoraSalarioUtil;
+import br.usp.icmc.labes.cursotestesoftware.calculosalario.util.CalculadoraSalarioUtil;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
