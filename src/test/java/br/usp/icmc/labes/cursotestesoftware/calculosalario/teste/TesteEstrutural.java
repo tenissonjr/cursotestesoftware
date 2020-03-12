@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 import br.usp.icmc.labes.cursotestesoftware.calculosalario.CalculadoraSalario;
 import br.usp.icmc.labes.cursotestesoftware.calculosalario.dominio.Salario;
 import br.usp.icmc.labes.cursotestesoftware.calculosalario.exception.SalarioException;
+import br.usp.icmc.labes.cursotestesoftware.calculosalario.util.CalculadoraSalarioUtil;
 
 public class TesteEstrutural {
 
@@ -668,6 +669,8 @@ public class TesteEstrutural {
 				.valorIrrf(toBigDecimal(3793.61))
 				
 				.salarioLiquido(toBigDecimal(13352.24)) ;
+		
+		CalculadoraSalarioUtil util = new CalculadoraSalarioUtil();
 
 		assertSalarioLiquidoCalculado(salarioEsperado);			
 		

@@ -7,15 +7,11 @@ import br.usp.icmc.labes.cursotestesoftware.calculosalario.exception.DependenteI
 import br.usp.icmc.labes.cursotestesoftware.calculosalario.exception.SalarioBrutoInvalidoException;
 import br.usp.icmc.labes.cursotestesoftware.calculosalario.exception.SalarioException;
 import br.usp.icmc.labes.cursotestesoftware.calculosalario.util.CalculadoraSalarioUtil;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter 
 @Setter
-@ToString
-@EqualsAndHashCode
 public class Salario
 {
    private BigDecimal salarioBruto = CalculadoraSalarioUtil.ZERO;
@@ -28,21 +24,22 @@ public class Salario
    
    private BigDecimal salarioLiquido = CalculadoraSalarioUtil.ZERO;
    
-   public Salario(BigDecimal salarioBruto) throws SalarioException {
-	  this(salarioBruto,0);
 
-   }
 
 public Salario(BigDecimal salarioBruto,int dependentesImpostoRenda) throws SalarioException {
-	   if(salarioBruto==null || salarioBruto.signum()<0) {
+	   if(salarioBruto==null ) {
 		   throw new SalarioBrutoInvalidoException();
 	   }
-	   this.salarioBruto=salarioBruto;
+	   if( salarioBruto.signum()<0) {
+		   throw new SalarioBrutoInvalidoException();
+	   }
+	   setSalarioBruto(salarioBruto);
 	   
 	   if(dependentesImpostoRenda<0) {
 		   throw new DependenteInvalidoException();
 	   }   
-	   this.dependentesImpostoRenda=dependentesImpostoRenda;
+	   setDependentesImpostoRenda(dependentesImpostoRenda);
+	   
    }
    
 
@@ -74,10 +71,7 @@ public Salario(BigDecimal salarioBruto,int dependentesImpostoRenda) throws Salar
 	   this.irrf.setDeducaoTotalDevidoADependentes(deducaoTotalDevidoADependentes);
 	   return this;
    }
-   public Salario deducaoFaixaIrrf(BigDecimal deducaoFaixa) {
-	   this.irrf.setDeducaoFaixa(deducaoFaixa);
-	   return this;
-   } 
+
 
    public Salario valorIrrf(BigDecimal valorIrrf) {
 	   this.irrf.setValor(valorIrrf);

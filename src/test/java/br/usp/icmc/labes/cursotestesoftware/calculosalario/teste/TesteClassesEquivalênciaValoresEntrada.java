@@ -36,21 +36,36 @@ public class TesteClassesEquivalênciaValoresEntrada  {
 	}	
 	
 	@Test(expected = SalarioBrutoInvalidoException.class)
-	public void testaSalarioBrutoInvalidoQuantidaddeDependentesValido() throws SalarioException {
+	public void testaSalarioBrutoInvalidoNuloQuantidaddeDependentesValido() throws SalarioException {
 
 		calculadoraSalario.calcular(null,0);
-		calculadoraSalario.calcular(BigDecimal.valueOf(-1),0);
+
 
 	}
 
+	
+	@Test(expected = SalarioBrutoInvalidoException.class)
+	public void testaSalarioBrutoInvalidoNegativoQuantidaddeDependentesValido() throws SalarioException {
+
+		calculadoraSalario.calcular(null,0);
+	
+	}
+	
 
 	@Test(expected = SalarioBrutoInvalidoException.class)
-	public void testaSalarioBrutoInvalidoQuantidaddeDependentesInvalido() throws SalarioException {
+	public void testaSalarioBrutoInvalidoNuloQuantidaddeDependentesInvalido() throws SalarioException {
 
 		calculadoraSalario.calcular(null,0-1);
+	
+	}
+	
+	@Test(expected = SalarioBrutoInvalidoException.class)
+	public void testaSalarioBrutoInvalidoNegativoQuantidaddeDependentesInvalido() throws SalarioException {
+
 		calculadoraSalario.calcular(BigDecimal.valueOf(-1),-3);
 
 	}	
+	
 	@Test
 	public void testaSalarioBrutoValidoQuantidaddeDependentesValido() throws SalarioException {
 

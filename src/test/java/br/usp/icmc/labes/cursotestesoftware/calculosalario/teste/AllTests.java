@@ -11,6 +11,14 @@ import org.junit.runners.Suite.SuiteClasses;
 			,TesteValoresLimiteCalculoInss.class
 			,TesteValoresLimiteCalculoIrrf.class 
 			})
+/**
+ *  Suite de testes do cálcuro de slário líquido
+ * 
+ * @author tenissonjr
+ *
+ * Para execução do Teste de Análise de Mutantes executar maven com a propriedade GOAL org.pitest:pitest-maven:mutationCoverage
+ *
+ */
 public class AllTests {
 
 }

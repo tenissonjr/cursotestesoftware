@@ -9,11 +9,10 @@ public class CalculadoraSalarioUtil {
 	public static BigDecimal ZERO = arred(BigDecimal.ZERO);
 
 	public static BigDecimal arred(BigDecimal valor) {
-		if (valor!=null) {
-			return valor.setScale(NUMERO_CASAS_DECIMAS, BigDecimal.ROUND_HALF_UP);
-		}
-		
-		return valor;
+
+			return valor.setScale(NUMERO_CASAS_DECIMAS, BigDecimal.ROUND_HALF_UP) ;
+
+	
 	}
 	
 	public static BigDecimal arred(double valor) {

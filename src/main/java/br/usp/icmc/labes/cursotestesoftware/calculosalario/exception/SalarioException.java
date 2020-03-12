@@ -8,8 +8,4 @@ public class SalarioException extends Exception {
 		super();
 	}
 	
-	public SalarioException(String message) {
-		super(message);
-	}
-		
 }
