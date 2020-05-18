@@ -12,10 +12,14 @@ import br.usp.icmc.labes.cursotestesoftware.calculosalario.dominio.Salario;
 import br.usp.icmc.labes.cursotestesoftware.calculosalario.exception.SalarioException;
 import br.usp.icmc.labes.cursotestesoftware.calculosalario.util.CalculadoraSalarioUtil;
 
-
+/**
+ * Classe utilitária para cálculo de salario
+ * @author p_6677
+ *
+ */
 public final class CalculadoraSalario {
 
-
+	
 	public CalculadoraSalario() {
 		super();
 	}
@@ -31,12 +35,8 @@ public final class CalculadoraSalario {
 		for (FaixaInss faixaInss : FaixaInss.TABELA_INSS) {
 
 			if( faixaInss.contemValor(baseCalculoInss)) {
-
-								
 				descontoSalarial.setAliquota( faixaInss.getAliquota() );
 				descontoSalarial.setValor(arred(baseCalculoInss.multiply(faixaInss.getAliquota().divide(toBigDecimal(100)))));
-				
-				break;
 			}
 		}
 		return descontoSalarial;
@@ -50,7 +50,6 @@ public final class CalculadoraSalario {
 		
 		DescontoSalarial descontoSalarial = new DescontoSalarial();
 		
-
 		BigDecimal deducaoTotalDevidoADependentes = arred( FaixaIrrf.DEDUCAO_POR_DEPENDENTE.multiply(BigDecimal.valueOf(dependentesImpostoRenda)) ) ;		
 		
 		BigDecimal baseCalculoIrrf = arred(baseCalculoIrrfParam.subtract(deducaoTotalDevidoADependentes ));
@@ -61,7 +60,7 @@ public final class CalculadoraSalario {
 		
 			for (FaixaIrrf faixaIrrf : FaixaIrrf.TABELA_IRRF) {
 				if( faixaIrrf.contemValor(baseCalculoIrrf)) {
-					
+
 					descontoSalarial.setAliquota(faixaIrrf.getAliquota());
 					descontoSalarial.setDeducaoFaixa(faixaIrrf.getDeducaoFaixa());
 					
@@ -74,8 +73,6 @@ public final class CalculadoraSalario {
 					
 
 					descontoSalarial.setValor(impostoRenda);
-					
-					break ;
 					
 				}
 		

@@ -23,10 +23,7 @@ public class TesteValoresLimiteCalculoIrrf {
 
 	private void assertDescontoCalculadoIrrf(BigDecimal baseCalculoIrrfParam, BigDecimal deducaoFaixa , double valorEsperadoAliquotaParam )  {
 
-		
-		
 		BigDecimal valorAliquotaEsperado 	= toBigDecimal(valorEsperadoAliquotaParam);		
-
 		BigDecimal valorEsperado = arred( (baseCalculoIrrfParam
 				.multiply(valorAliquotaEsperado)
 				.divide(toBigDecimal(100))
@@ -34,59 +31,44 @@ public class TesteValoresLimiteCalculoIrrf {
 				.subtract(deducaoFaixa) 
 			);
 		
-		
-		
 		if (valorEsperado.signum()<0) {
 			valorEsperado = arred (BigDecimal.ZERO);
 		}
-		
 		DescontoSalarial descontoIrrf = calculadoraSalario.calcularDescontoIrrf(baseCalculoIrrfParam) ;
-		
 		assertEquals(baseCalculoIrrfParam	, descontoIrrf.getBaseCalculo());
 		assertEquals(valorAliquotaEsperado	, descontoIrrf.getAliquota());
 		assertEquals(valorEsperado			, descontoIrrf.getValor());
-		
 	}
 	
 	@Test
 	public void testaAliquotasIrrfQuandoBaseCalculoMenorLimitesInferioresFaixas()  {
-
 		assertDescontoCalculadoIrrf(subtraiDecimo(FAIXA_1.getLimiteInferior()) ,BigDecimal.ZERO		  ,   0.0);
 		assertDescontoCalculadoIrrf(subtraiDecimo(FAIXA_2.getLimiteInferior())	,FAIXA_1.getDeducaoFaixa(),   7.5);
 		assertDescontoCalculadoIrrf(subtraiDecimo(FAIXA_3.getLimiteInferior())	,FAIXA_2.getDeducaoFaixa(),	 15.0);
 		assertDescontoCalculadoIrrf(subtraiDecimo(FAIXA_4.getLimiteInferior())	,FAIXA_3.getDeducaoFaixa(),  22.5);
-
 	}
 	
 	@Test
 	public void testaAliquotasIrrfQuandoBaseCalculoIgualLimitesInferioresFaixas()  {
-
 		assertDescontoCalculadoIrrf(FAIXA_1.getLimiteInferior() ,FAIXA_1.getDeducaoFaixa(),   7.5);
 		assertDescontoCalculadoIrrf(FAIXA_2.getLimiteInferior()	,FAIXA_2.getDeducaoFaixa(),  15.0);
 		assertDescontoCalculadoIrrf(FAIXA_3.getLimiteInferior()	,FAIXA_3.getDeducaoFaixa(),	 22.5);
 		assertDescontoCalculadoIrrf(FAIXA_4.getLimiteInferior()	,FAIXA_4.getDeducaoFaixa(),  27.5);
-		
 	}	
 	
 	@Test
 	public void testaAliquotasIrrfQuandoBaseCalculoIgualLimitesSuperioresFaixas()  {
-
 		assertDescontoCalculadoIrrf(FAIXA_1.getLimiteSuperior() ,FAIXA_1.getDeducaoFaixa(),   7.5);
 		assertDescontoCalculadoIrrf(FAIXA_2.getLimiteSuperior()	,FAIXA_2.getDeducaoFaixa(),  15.0);
 		assertDescontoCalculadoIrrf(FAIXA_3.getLimiteSuperior()	,FAIXA_3.getDeducaoFaixa(),	 22.5);
 		assertDescontoCalculadoIrrf(FAIXA_4.getLimiteSuperior()	,FAIXA_4.getDeducaoFaixa(),  27.5);
-		
 	}	
 
 	@Test
 	public void testaAliquotasIrrfQuandoBaseCalculoMaiorLimitesSuperioresFaixas() {
-
 		assertDescontoCalculadoIrrf(adicionaDecimo(FAIXA_1.getLimiteSuperior()) ,FAIXA_2.getDeducaoFaixa(),  15.0);
 		assertDescontoCalculadoIrrf(adicionaDecimo(FAIXA_2.getLimiteSuperior())	,FAIXA_3.getDeducaoFaixa(),  22.5);
 		assertDescontoCalculadoIrrf(adicionaDecimo(FAIXA_3.getLimiteSuperior())	,FAIXA_4.getDeducaoFaixa(),	 27.5);
 		assertDescontoCalculadoIrrf(adicionaDecimo(FAIXA_4.getLimiteSuperior())	,FAIXA_4.getDeducaoFaixa(),  27.5);
-		
 	}	
-	
-
 }
